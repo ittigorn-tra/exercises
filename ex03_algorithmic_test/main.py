@@ -30,7 +30,7 @@ def to_roman_digits(value: int) -> str:
 
 
 if __name__ == '__main__':
-    d = 2933
+    value = 0
 
-    result = to_roman_digits(value=2933)
+    result = to_roman_digits(value=value)
     print(result)
