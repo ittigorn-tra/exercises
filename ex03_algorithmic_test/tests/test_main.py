@@ -1,6 +1,7 @@
 from logging import getLogger
 
 import pytest
+from config import NULL_REPRESENTATION
 from main import to_roman_digits
 
 logger = getLogger()
@@ -9,6 +10,7 @@ logger = getLogger()
 @pytest.fixture
 def good_values():
     return [
+        [0, NULL_REPRESENTATION],
         [1, 'I'],
         [4, 'IV'],
         [9, 'IX'],
@@ -30,12 +32,41 @@ def good_values():
     ]
 
 
+@pytest.fixture
+def bad_values():
+    return [
+        -1,
+        -10,
+        -123,
+        -59342
+    ]
+
+
+@pytest.fixture
+def zero_value():
+    return 0
+
+
 def test_good_values(good_values):
-    for test_value, expected_result in good_values:
-        roman_digits = to_roman_digits(test_value)
-        logger.info(f'Test Value : {str(test_value).rjust(8)} Roman Digits : {roman_digits}')
+    for value, expected_result in good_values:
+        roman_digits = to_roman_digits(value)
+        logger.info(f'Test Value : {str(value).rjust(8)} Roman Digits : {roman_digits}')
 
         # check if return type is as in the requirement
         assert isinstance(roman_digits, str)
         assert len(roman_digits) > 0
         assert roman_digits == expected_result
+
+
+def test_bad_values(bad_values):
+    for value in bad_values:
+        logger.info(f'Test Value : {str(value).rjust(5)}')
+        with pytest.raises(ValueError):
+            to_roman_digits(value)
+
+
+def test_zero_values(bad_values):
+    for value in bad_values:
+        logger.info(f'Test Value : {str(value).rjust(5)}')
+        with pytest.raises(ValueError):
+            to_roman_digits(value)
