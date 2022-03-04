@@ -1,7 +1,31 @@
-from operator import indexOf
-
-ROMAN_DIGITS = ["_V", "_I_V", "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"]
-ARABIC_DIGITS = [5000, 4000, 1000, 900, 500,  400, 100,  90,  50,  40,  10,   9,  5,   4,  1]
+ARABIC_ROMAN_DIGIT_MAP = [
+    {"arabic": 1000000, "roman": "_M"},
+    {"arabic": 900000, "roman": "_C_M"},
+    {"arabic": 500000, "roman": "_D"},
+    {"arabic": 400000, "roman": "_C_D"},
+    {"arabic": 100000, "roman": "_C"},
+    {"arabic": 90000, "roman": "_X_C"},
+    {"arabic": 50000, "roman": "_L"},
+    {"arabic": 40000, "roman": "_X_L"},
+    {"arabic": 10000, "roman": "_X"},
+    {"arabic": 9000, "roman": "_I_X"},
+    {"arabic": 5000, "roman": "_V"},
+    {"arabic": 5000, "roman": "_V"},
+    {"arabic": 4000, "roman": "_I_V"},
+    {"arabic": 1000, "roman": "M"},
+    {"arabic": 900, "roman": "CM"},
+    {"arabic": 500, "roman": "D"},
+    {"arabic": 400, "roman": "CD"},
+    {"arabic": 100, "roman": "C"},
+    {"arabic": 90, "roman": "XC"},
+    {"arabic": 50, "roman": "L"},
+    {"arabic": 40, "roman": "XL"},
+    {"arabic": 10, "roman": "X"},
+    {"arabic": 9, "roman": "IX"},
+    {"arabic": 5, "roman": "V"},
+    {"arabic": 4, "roman": "IV"},
+    {"arabic": 1, "roman": "I"},
+]
 
 
 def to_roman_digits(value: int) -> str:
@@ -12,25 +36,22 @@ def to_roman_digits(value: int) -> str:
     if value == 0:
         return 'nulla'
 
-    start_at = 0
     result = []
 
     # loop while not depleted
     while value > 0:
-        for arabic_digit in ARABIC_DIGITS[start_at:]:
+        for digit_pair in ARABIC_ROMAN_DIGIT_MAP:
             # find value that subtract to zero, or more than 0, descending
-            if (value - arabic_digit == 0) or ((value - arabic_digit) > 0):
-                digit_idx = indexOf(ARABIC_DIGITS, arabic_digit)
-                result.append(ROMAN_DIGITS[digit_idx])
-                start_at = digit_idx
-                value = value - arabic_digit
+            if (value - digit_pair['arabic']) >= 0:
+                result.append(digit_pair['roman'])
+                value = value - digit_pair['arabic']
                 break
 
     return ''.join(result)
 
 
 if __name__ == '__main__':
-    value = 0
+    value = 11000
 
     result = to_roman_digits(value=value)
     print(result)
