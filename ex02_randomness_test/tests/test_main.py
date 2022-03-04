@@ -7,9 +7,9 @@ logger = getLogger()
 
 
 def test_draw_lottery():
-    for test_count in range(1000):
+    for test_count in range(10000):
         draw_results = draw_lottery()
-        logger.info(f'Test #{str(test_count).ljust(3)} Draw Results : {draw_results}')
+        logger.info(f'Test #{str(test_count).ljust(4)} Draw Results : {draw_results}')
 
         # check if return type is as in the requirement
         assert isinstance(draw_results, list)
