@@ -28,7 +28,7 @@ class Circle(TwoDimensionShape):
         return 2 * math.pi * self.radius
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     radius = 5.0
     c = Circle(radius)
 

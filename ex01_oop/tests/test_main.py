@@ -1,7 +1,7 @@
 from logging import getLogger
 
 import pytest
-from ex01_oop.main import Circle
+from main import Circle
 
 logger = getLogger()
 
