@@ -63,10 +63,3 @@ def test_bad_values(bad_values):
         logger.info(f'Test Value : {str(value).rjust(5)}')
         with pytest.raises(ValueError):
             to_roman_digits(value)
-
-
-def test_zero_values(bad_values):
-    for value in bad_values:
-        logger.info(f'Test Value : {str(value).rjust(5)}')
-        with pytest.raises(ValueError):
-            to_roman_digits(value)
