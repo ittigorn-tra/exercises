@@ -1,0 +1,7 @@
+[requires]
+python_version = "3.8"
+
+[packages]
+jupyter = "1.0.0"
+autopep8 = "1.6.0"
+pytest = "7.0.1"
