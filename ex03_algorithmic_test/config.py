@@ -1,3 +1,8 @@
+'''
+I've decided to add larger digits too 
+(the ones with underscore in front of the letter) 
+so that the code can handle larger numbers
+'''
 # please keep the digits in descending order
 ARABIC_ROMAN_DIGIT_MAP = [
     {"arabic": 1000000, "roman": "_M"},
